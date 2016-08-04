@@ -16,3 +16,8 @@ $(MAIN): $(OBJS)
 
 clean:
 	del /q $(MAIN).exe obj\*.o
+
+# build a snap for cross distribution availability
+# cleanbuild uses snapcracft and lxd
+snap:
+	snapcraft cleanbuild
