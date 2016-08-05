@@ -9,16 +9,21 @@ LDFLAGS := -lboost_system -lboost_thread -lboost_filesystem -lboost_regex
 ifdef SYSTEMROOT
 	RM = del /Q
 	FixPath = $(subst /,\,$1)
+	MKDIR = mkdir
 else
 	ifeq ($(shell uname), Linux)
 		RM = rm -f
 		FixPath = $1
+		MKDIR = mkdir -p
 	endif
 endif
 
 all: $(MAIN)
 
-obj/%.o: %.cpp $(INCS)
+prep:
+	$(MKDIR) obj
+
+obj/%.o: %.cpp $(INCS) prep
 	$(CXX) $(CPPFLAGS) -o $@ -c $<
 
 $(MAIN): $(OBJS)
