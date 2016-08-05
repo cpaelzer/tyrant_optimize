@@ -9,17 +9,17 @@ confinement: strict
 
 apps:
   sim:
-    command: usr/bin/tuo.exe
+    command: usr/local/bin/tuo.exe
     plugs: [home]
   updatexml:
-    command: usr/bin/update_xml.sh
+    command: usr/local/bin/update_xml.sh
     plugs: [home, network]
 
 parts:
   tyrant-unleashed-optimizer:
     # as we are part of the tuo git tree then just build locally
     source: .
-    plugin: toumakefixup
+    plugin: make
     build-packages:
       - g++
       - make
